@@ -33,26 +33,34 @@ filtroPassaAlta = [0, -1, 0; -1, 5, -1; 0, -1, 0]
 % mean - merdia
 %std - desvio padrao
 
-matriz = [1,2;3,4]
+matriz = [1,2;
+          3,4]
 
 %circshift(matriz, [0,-1])
-%ans = 2,1; 4,3
+%ans = 2,1; 
+%      4,3
 
 %circshift(matriz, [0,1])
-%ans = 2,1; 4,3
-
+%ans = 2,1; 
+%      4,3
+          
 %circshift(matriz, [1,0])
-%ans = 3,4;1,2
-
+%ans = 3,4;
+%      1,2
+          
 %circshift(matriz, [-1,0])
-%ans = 3,4;1,2
-
+%ans = 3,4;
+%      1,2
+          
 %circshift(matriz, [1,1])
-%ans = 4,3;2,1
-
+%ans = 4,3;
+%      2,1
+          
 %circshift(matriz, [0,0])
-%ans = 1,2;3,4
+%ans = 1,2;
+%      3,4
 
+          
 %para retornar a posica
 %matriz(1,2)
 %matriz(2,1)
@@ -74,4 +82,22 @@ a = filtroPassaBaixa(x,y)*teste(x+1,y-1)
   %  end
 
 
+
+teste = 0
+
+%while teste <= 5
+
+%    imagem(1,1) = filtroPassaBaixa(2,2)*img(1,1)+filtroPassaBaixa(2,3)*img(1,2)+filtroPassaBaixa(3,2)*img(2,1)+filtroPassaBaixa(3,3)*img(2,2)
+%    circshift(img, [1,1])    
+%    teste = teste + 1;
+
+%end
+
+for i = 0:5
+    for x = 0:5
+        imagem(i, x) = filtroPassaBaixa(2,2)*img(1,1)+filtroPassaBaixa(2,3)*img(1,2)+filtroPassaBaixa(3,2)*img(2,1)+filtroPassaBaixa(3,3)*img(2,2)
+        %circshift(img, [1,0])
+    end
+    circshift(img, [0,1])
+end
 
