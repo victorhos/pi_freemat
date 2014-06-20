@@ -1,5 +1,5 @@
 %lendo a imagem
-img = imread('/Users/victor/Pictures/sparta.jpg');
+img = imread('/Users/victor/Projetos/pi_freemat/sparta.jpg');
 
 %mostrando imagem lida
 figure(1)
@@ -12,9 +12,6 @@ filtroPassaBaixa = [0.12, 0.12, 0.12 ; 0.12, 0.12, 0.12; 0.12, 0.12, 0.12]
 %criando filtro passa alta
 filtroPassaAlta = [0, -1, 0; -1, 5, -1; 0, -1, 0]
 
-%criando uma linha
-x  = linspace(1,256,256);
-
 %------------------------------------------------------------------------
 
 %aplicando o algoritmo gaussiano (aplicar ruido)
@@ -25,7 +22,7 @@ colormap(gray);
 image(img_r);
 nmean = 10;
 nvar = 1000;
-img_r_n = img_r + sqrt(nvar)*randn(256,256)+nmean;
+img_r_n = img_r + sqrt(nvar) * randn(256,256) + nmean;
 
 %mostrando imagem com ruido
 figure(2);
@@ -35,8 +32,9 @@ image(img_r_n);
 %grafico ruido
 %pega a linha 128, de 1 ate 256 para mostrar no grafico
 linha_ruido = img_r_n(128,1:256);
-figure(5);
-plot(x,linha_ruido,'b-');
+linha = linspace(1,256,256);
+figure(3);
+plot(linha, linha_ruido, 'b-');
 mean(linha_ruido)
 std(linha_ruido)
 
@@ -46,15 +44,15 @@ std(linha_ruido)
 for x = 2:254
     for y = 2:254
         
-        a = filtroPassaBaixa(1,1) * img(x-1,y-1)
-        b = filtroPassaBaixa(1,2) * img(x-1,y)
-        c = filtroPassaBaixa(1,3) * img(x-1,y+1)
-        d = filtroPassaBaixa(2,1) * img(x,y-1)
-        e = filtroPassaBaixa(2,2) * img(x,y)
-        f = filtroPassaBaixa(2,3) * img(x, y+1)
-        g = filtroPassaBaixa(3,1) * img(x+1,y-1)
-        h = filtroPassaBaixa(3,2) * img(x+1,y)
-        i = filtroPassaBaixa(3,3) * img(x+1,y+1)
+        a = filtroPassaBaixa(1,1) * img_r_n(x-1,y-1)
+        b = filtroPassaBaixa(1,2) * img_r_n(x-1,y)
+        c = filtroPassaBaixa(1,3) * img_r_n(x-1,y+1)
+        d = filtroPassaBaixa(2,1) * img_r_n(x,y-1)
+        e = filtroPassaBaixa(2,2) * img_r_n(x,y)
+        f = filtroPassaBaixa(2,3) * img_r_n(x, y+1)
+        g = filtroPassaBaixa(3,1) * img_r_n(x+1,y-1)
+        h = filtroPassaBaixa(3,2) * img_r_n(x+1,y)
+        i = filtroPassaBaixa(3,3) * img_r_n(x+1,y+1)
         
         imagem(x, y) = a + b + c + d + e + f + g + h + i;
         
@@ -71,17 +69,19 @@ for q = 1:256
 end
 
 %Mostrando a imagem com passa baixa
-figure(3)
+figure(4)
 colormap(gray);
 image(imagem)
 
 %grafico pos passa-baixa
 %pega a linha 128, de 1 ate 256 para mostrar no grafico
-linha_ruido = img_r_n(128,1:256);
+linha_ruido_pb = imagem(128,1:256);
+linha_pb = linspace(1,256,256);
 figure(5);
-plot(x,linha_ruido,'b-');
+plot(linha_pb, linha_ruido_pb, 'b-');
 mean(linha_ruido)
 std(linha_ruido)
+
 
 %------------------------------------------------------------------------
 %algoritimo de convolucao PASSA ALTA
@@ -114,7 +114,7 @@ for q = 1:256
 end
 
 %Mostrando a imagem com passa alta
-figure(4)
+figure(6)
 colormap(gray);
 image(imagem)
 

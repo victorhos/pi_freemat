@@ -12,9 +12,6 @@ filtroPassaBaixa = [0.12, 0.12, 0.12 ; 0.12, 0.12, 0.12; 0.12, 0.12, 0.12]
 %criando filtro passa alta
 filtroPassaAlta = [0, -1, 0; -1, 5, -1; 0, -1, 0]
 
-%criando uma linha
-
-
 %------------------------------------------------------------------------
 
 %aplicando o algoritmo gaussiano (aplicar ruido)
