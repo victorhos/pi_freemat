@@ -41,8 +41,8 @@ std(linha_ruido)
 %------------------------------------------------------------------------
 %algoritimo de convolucao PASSA BAIXA
 
-for x = 2:254
-    for y = 2:254
+for x = 2:255
+    for y = 2:255
         
         a = filtroPassaBaixa(1,1) * img_r_n(x-1,y-1)
         b = filtroPassaBaixa(1,2) * img_r_n(x-1,y)
@@ -86,8 +86,8 @@ std(linha_ruido)
 %------------------------------------------------------------------------
 %algoritimo de convolucao PASSA ALTA
 
-for x = 2:254
-    for y = 2:254
+for x = 2:255
+    for y = 2:255
         
         a = filtroPassaAlta(1,1) * img(x-1,y-1)
         b = filtroPassaAlta(1,2) * img(x-1,y)
